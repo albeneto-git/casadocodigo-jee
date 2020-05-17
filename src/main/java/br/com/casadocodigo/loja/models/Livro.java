@@ -28,7 +28,7 @@ public class Livro {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	@NotBlank
 	private String titulo;
 	
@@ -104,5 +104,12 @@ public class Livro {
 	public void setCapaPath(String capaPath) {
 		this.capaPath = capaPath;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}	
 	
 }
