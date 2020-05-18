@@ -2,14 +2,17 @@ package br.com.casadocodigo.loja.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import br.com.casadocodigo.loja.models.Livro;
 
+@Stateful	// dependencia do jpa com o ejb
 public class LivroDao {
 
-	@PersistenceContext
+	@PersistenceContext(type = PersistenceContextType.EXTENDED)	// mantem a transação por todo o tempo de vida do dao
 	private EntityManager manager;
 
 	public void salvar(Livro livro) {
@@ -32,8 +35,9 @@ public class LivroDao {
 	}
 
 	public Livro buscarPorId(Integer id) {
-		String jpql = "select l from Livro l join fetch l.autores " + "where l.id = :id";
-		return (Livro) manager.createQuery(jpql, Livro.class).setParameter("id", id).getSingleResult();
+		return manager.find(Livro.class, id);
+//		String jpql = "select l from Livro l join fetch l.autores " + "where l.id = :id";
+//		return (Livro) manager.createQuery(jpql, Livro.class).setParameter("id", id).getSingleResult();
 	}
 
 }
