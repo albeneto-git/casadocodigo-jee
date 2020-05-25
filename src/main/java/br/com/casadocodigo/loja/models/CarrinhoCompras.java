@@ -25,7 +25,7 @@ public class CarrinhoCompras implements Serializable {
 
 	@Inject
 	private CompraDao compraDao;
-
+	
 	public void add(CarrinhoItem item) {
 		itens.add(item);
 	}
@@ -56,10 +56,9 @@ public class CarrinhoCompras implements Serializable {
 		this.itens.remove(item);
 	}
 
-	public void finalizar(Usuario usuario) {
-		Compra compra = new Compra();
-		compra.setUsuario(usuario);
+	public void finalizar(Compra compra) {
 		compra.setItens(this.toJson());
+		compra.setTotal(getTotal());
 		compraDao.salvar(compra);
 	}
 

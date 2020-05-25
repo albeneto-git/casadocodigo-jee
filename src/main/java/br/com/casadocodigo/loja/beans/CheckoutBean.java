@@ -1,28 +1,41 @@
 package br.com.casadocodigo.loja.beans;
 
 import javax.enterprise.inject.Model;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 
-import br.com.casadocodigo.loja.dao.UsuarioDao;
 import br.com.casadocodigo.loja.models.CarrinhoCompras;
+import br.com.casadocodigo.loja.models.Compra;
 import br.com.casadocodigo.loja.models.Usuario;
 
 @Model
 public class CheckoutBean {
 
     private Usuario usuario = new Usuario();
-
-    @Inject
-    private UsuarioDao usuarioDao;
     
     @Inject
     private CarrinhoCompras carrinho;    
 
+    @Inject
+    private FacesContext facesContext;    
+    
     @Transactional
-    public void finalizar() {
-    	carrinho.finalizar(usuario);
-        usuarioDao.salvar(usuario);
+    public String finalizar() {
+    	Compra compra = new Compra();
+        compra.setUsuario(usuario);
+        carrinho.finalizar(compra);
+        
+        // pagamento
+        String contextName = facesContext.getExternalContext().getRequestContextPath();    
+        HttpServletResponse response = (HttpServletResponse) 
+            facesContext.getExternalContext().getResponse();
+        
+        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        response.setHeader("Location", contextName + "/service/pagamento?uuid="+compra.getUuid());        
+
+        return "service/pagamento?faces-redirect=true";
     }
 
 	public Usuario getUsuario() {
