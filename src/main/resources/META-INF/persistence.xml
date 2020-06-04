@@ -13,9 +13,9 @@
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
 			<!-- tempo de duração do cache 15 minutos -->
-			<proprerty	name="hibernate.cache.infinispan.entity.expiration.lifespan" value="900000" />
+			<!-- <proprerty	name="hibernate.cache.infinispan.entity.expiration.lifespan" value="900000" /> -->
 			<!-- quanto tempo o cache fica inativo 5minutos -->
-			<property name="hibernate.cache.infinispan.entity.expiration.max_idle" value="300000"/>
+			<!-- <property name="hibernate.cache.infinispan.entity.expiration.max_idle" value="300000"/> -->
 			<!-- ativando o cache -->
 			<property name="hibernate.cache.use_query_cache" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
