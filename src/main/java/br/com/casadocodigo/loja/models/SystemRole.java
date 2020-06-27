@@ -6,6 +6,10 @@ import javax.persistence.Id;
 @Entity
 public class SystemRole {
 	
+	public SystemRole() {
+		
+	}
+	
 	@Id
 	private String name;
 
