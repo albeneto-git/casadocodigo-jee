@@ -8,6 +8,8 @@
 
 <ui:composition template="/templates/_admin_template.xhtml">
 
+	<ui:param name="cadastro" value="active"/>
+
     <ui:define name="body">
 
         <h1>Cadastro de Livros</h1>
@@ -66,7 +68,7 @@
 				<h:message for="capaLivro" />
 			</div>
 			<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}"
-				styleClass="btn-primary" />
+				styleClass="btn btn-primary" />
 	</h:form>
 
     </ui:define>

@@ -197,7 +197,7 @@
 						class="colecoesDaCDC-colecaoLink"> Mobile </a></li>
 					<c:if test="#{currentUser.hasRole('ADMIN')}">
 						<li class="colecoesDaCDC-colecaoItem"><a
-							href="#{request.contextPath}/livros/lista.xhtml"
+							href="#{request.contextPath}/admin/livros/lista.xhtml"
 							class="colecoesDaCDC-colecaoLink"> Administração </a></li>
 					</c:if>
 				</nav>
@@ -447,6 +447,16 @@
 			</ul>
 		</div>
 	</footer>
+
+	<script>
+	    var canalDePromos = new WebSocket("ws://localhost:8080/#{request.contextPath}/canal/promos");
+	    canalDePromos.onmessage = function(message) {
+	        var novaPromo = JSON.parse(message.data);
+	        if(confirm("Que tal aproveitar a promoção relâmpago " + novaPromo.titulo)) {
+	            document.location.href= "#{request.contextPath}/detalhe-livro.xhtml?id=" + novaPromo.livroId;
+	        }
+	    };
+	</script>
 
 	<script type="text/javascript"
 		src="#{request.contextPath}/resources/js/trackExternalLinks.js"></script>

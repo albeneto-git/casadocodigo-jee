@@ -22,11 +22,14 @@
 			
 			<div class="collapse navbar-collapse" id="navbarCasaDoCodigo">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/livros/lista.xhtml">Lista</a>
+					<li class="nav-item #{lista}">
+						<a class="nav-link" href="#{request.contextPath}/admin/livros/lista.xhtml">Lista</a>
 					</li>				
-					<li class="nav-item">
-						<a class="nav-link" href="#{request.contextPath}/livros/form.xhtml">Cadastro</a>
+					<li class="nav-item #{cadastro}">
+						<a class="nav-link" href="#{request.contextPath}/admin/livros/form.xhtml">Cadastro</a>
+					</li>
+					<li class="nav-item #{cadastro}">
+						<a class="nav-link" href="#{request.contextPath}/admin/promos.xhtml">Promoção Relâmpago</a>
 					</li>				
 				</ul>
 				
